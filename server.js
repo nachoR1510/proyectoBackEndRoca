@@ -155,12 +155,12 @@ app.post("/api/carts/:cid/product/:pid", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  const products = readProducts(); // leemos fresh desde el JSON cada vez que entran
+  const products = readProducts();
   res.render("home", { products });
 });
 
 app.get("/realtimeproducts", (req, res) => {
-  const products = readProducts(); // Leer fresh del JSON
+  const products = readProducts();
   res.render("realTimeProducts", { products });
 });
 
