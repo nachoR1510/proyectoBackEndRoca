@@ -8,7 +8,9 @@
     "status": true,
     "stock": 10,
     "category": "tecnología",
-    "thumbnails": ["mouse1.jpg"]
+    "thumbnails": [
+      "mouse1.jpg"
+    ]
   },
   {
     "id": 2,
@@ -19,7 +21,9 @@
     "status": true,
     "stock": 7,
     "category": "tecnología",
-    "thumbnails": ["teclado1.jpg"]
+    "thumbnails": [
+      "teclado1.jpg"
+    ]
   },
   {
     "id": 3,
@@ -30,6 +34,8 @@
     "status": true,
     "stock": 5,
     "category": "audio",
-    "thumbnails": ["auris1.jpg"]
+    "thumbnails": [
+      "auris1.jpg"
+    ]
   }
 ]
