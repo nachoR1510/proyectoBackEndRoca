@@ -1,0 +1,42 @@
+<h1>Productos</h1>
+
+<header>
+  <nav>
+    <a href="/carts/687f2eab0d154484fc946589">Ver carrito</a>
+    <a href="/products/new">Agregar nuevo producto</a>
+  </nav>
+</header>
+
+<ul>
+  {{#each products}}
+    <li>
+      <strong>{{this.title}}</strong> - ${{this.price}}<br/>
+      Categoría: {{this.category}}<br/>
+      <button onclick="addToCart('{{this._id}}')">Agregar al carrito</button>
+      <a href="/products/{{this._id}}">Ver detalles</a>
+    </li>
+  {{/each}}
+</ul>
+
+<div>
+  {{#if hasPrevPage}}
+    <a href="/products?page={{prevPage}}&limit={{limit}}">Página anterior</a>
+  {{/if}}
+  Página {{page}} de {{totalPages}}
+  {{#if hasNextPage}}
+    <a href="/products?page={{nextPage}}&limit={{limit}}">Página siguiente</a>
+  {{/if}}
+</div>
+
+<script>
+  async function addToCart(productId) {
+    const cartId = "687f2eab0d154484fc946589";
+
+    const res = await fetch(`/api/carts/${cartId}/product/${productId}`, {
+      method: "POST",
+    });
+
+    if (res.ok) alert("Producto agregado al carrito!");
+    else alert("Error agregando producto");
+  }
+</script>

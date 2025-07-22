@@ -1,0 +1,69 @@
+<h1>Carrito</h1>
+
+{{#if cart.products.length}}
+  <ul>
+    {{#each cart.products}}
+      <li>
+        <strong>{{this.product.title}}</strong><br />
+        Precio: ${{this.product.price}}<br />
+        Cantidad: 
+        <input type="number" min="1" value="{{this.quantity}}" id="qty-{{@index}}" />
+        <button onclick="updateQuantity('{{../cart._id}}', '{{this.product._id}}', document.getElementById('qty-{{@index}}').value)">Actualizar</button>
+        <button onclick="removeProduct('{{../cart._id}}', '{{this.product._id}}')">Eliminar</button>
+        <br />
+        Subtotal: ${{multiply this.product.price this.quantity}}<br /><br />
+      </li>
+    {{/each}}
+  </ul>
+
+  <button onclick="clearCart('{{cart._id}}')">Vaciar carrito</button>
+
+  <p><strong>Total: ${{calculateTotal cart.products}}</strong></p>
+{{else}}
+  <p>El carrito está vacío.</p>
+{{/if}}
+
+<script>
+  async function updateQuantity(cartId, productId, quantity) {
+    quantity = parseInt(quantity);
+    if (quantity < 1) {
+      alert("La cantidad debe ser al menos 1");
+      return;
+    }
+    const res = await fetch(`/api/carts/${cartId}/products/${productId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ quantity }),
+    });
+    if (res.ok) {
+      alert("Cantidad actualizada");
+      location.reload();
+    } else {
+      alert("Error al actualizar cantidad");
+    }
+  }
+
+  async function removeProduct(cartId, productId) {
+    const res = await fetch(`/api/carts/${cartId}/products/${productId}`, {
+      method: "DELETE",
+    });
+    if (res.ok) {
+      alert("Producto eliminado");
+      location.reload();
+    } else {
+      alert("Error al eliminar producto");
+    }
+  }
+
+  async function clearCart(cartId) {
+    const res = await fetch(`/api/carts/${cartId}`, {
+      method: "DELETE",
+    });
+    if (res.ok) {
+      alert("Carrito vaciado");
+      location.reload();
+    } else {
+      alert("Error al vaciar carrito");
+    }
+  }
+</script>

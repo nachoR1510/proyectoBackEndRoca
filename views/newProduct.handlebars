@@ -1,0 +1,31 @@
+<h1>Agregar nuevo producto</h1>
+
+<form action="/products/new" method="POST">
+  <label for="title">Título:</label><br/>
+  <input type="text" name="title" id="title" required/><br/><br/>
+
+  <label for="description">Descripción:</label><br/>
+  <textarea name="description" id="description"></textarea><br/><br/>
+
+  <label for="price">Precio:</label><br/>
+  <input type="number" name="price" id="price" step="0.01" required/><br/><br/>
+
+  <label for="category">Categoría:</label><br/>
+  <input type="text" name="category" id="category"/><br/><br/>
+
+  <label for="stock">Stock:</label><br/>
+  <input type="number" name="stock" id="stock" min="0"/><br/><br/>
+
+  <label for="code">Código:</label><br/>
+  <input type="text" name="code" id="code"/><br/><br/>
+
+  <label for="status">Estado (true/false):</label><br/>
+  <input type="text" name="status" id="status" value="true"/><br/><br/>
+
+  <label for="thumbnails">Thumbnails:</label><br/>
+  <input type="text" name="thumbnails" id="thumbnails"/><br/><br/>
+
+  <button type="submit">Agregar producto</button>
+</form>
+
+<a href="/products">Volver a productos</a>
